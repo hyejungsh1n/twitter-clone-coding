@@ -1,9 +1,11 @@
+import { authService } from "fbase";
 import React, { useState } from "react"; 
 
 
 const Auth = () => { 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [newAccount, setNewAccount] = useState(true)
     const onChange = (event) => {
         const { 
             target : { name, value}, // 변경이 일어난 부분
@@ -14,9 +16,28 @@ const Auth = () => {
             setPassword(value);
         }
     }
-    const onSubmit = (event) => {
+    const onSubmit = async(event) => {
+        let data;
         event.preventDefault();
-    }
+        try {
+            if(newAccount) {
+                // create account
+                /** Link:
+                 * https://firebase.google.com/docs/reference/js/auth.md#createuserwithemailandpassword */
+               data = await authService.createUserWithEmailAndPassword(
+                   email, password
+               )
+    
+            } else { data = await authService.signInWithEmailAndPassword(email, password)
+                // Login
+                
+            }
+            console.log(data)
+        } catch(error) {
+            console.log(error)
+        }
+
+    };
     return ( 
         <div >
         <form onSubmit={onSubmit}>
@@ -36,7 +57,7 @@ const Auth = () => {
                 onChange={onChange} />
             <input
                 type="submit" 
-                value="Login" />
+                value={newAccount ? "Create Account" : "Log in"} />
         </form>
         <div>
             <button>Continue with Google</button>
