@@ -6,7 +6,7 @@ const Auth = () => {
     const [password, setPassword] = useState("");
     const onChange = (event) => {
         const { 
-            target : { name, value},
+            target : { name, value}, // 변경이 일어난 부분
         } = event;
         if(name === 'email') {
             setEmail(value);
@@ -22,7 +22,7 @@ const Auth = () => {
         <form onSubmit={onSubmit}>
             <input 
                 name="email" 
-                type="text" 
+                type="email" 
                 placeholder="Email" 
                 required 
                 value={email}
