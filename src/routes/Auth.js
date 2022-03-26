@@ -1,4 +1,4 @@
-import { authService } from "fbase";
+import { authService, firebaseInstance } from "fbase";
 import React, { useState } from "react"; 
 
 
@@ -42,6 +42,20 @@ const Auth = () => {
 
 // newAccount의 이전값을 가져와서 그 값에 반대되는 것을 리턴. 
 const toggleAccount = () => setNewAccount((prev) => !prev); 
+
+// 소셜로그인 관련
+const onSocialClick = (event) => {
+    // ES6
+    let provider;
+    const {target: {name},
+    }= event;
+        provider = new firebaseInstance.auth.GoogleAuthProvider();
+    if(name === "google") {
+        // provider = new 
+    } else if(name === "github") {
+        provider = new firebaseInstance.auth.GithubAuthProvider()
+    }
+};
     return ( 
         <div >
         <form onSubmit={onSubmit}>
@@ -68,8 +82,8 @@ const toggleAccount = () => setNewAccount((prev) => !prev);
 
         </span>
         <div>
-            <button>Continue with Google</button>
-            <button>Continue with Github</button>
+            <button onClick={onSocialClick} name="google">Continue with Google</button>
+            <button onClick={onSocialClick} name="github">Continue with Github</button>
         </div>
         </div>
     );
