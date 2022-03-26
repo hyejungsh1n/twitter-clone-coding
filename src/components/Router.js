@@ -2,7 +2,7 @@ import React from "react"
 import { BrowserRouter as Router,
         Routes, 
         Route,
-        Redirect,
+        Navigate,
          } from "react-router-dom"; 
 import Auth from "../routes/Auth";
 import Home from "../routes/Home";
@@ -10,7 +10,6 @@ import Navigation from "../components/Navigation";
 import Profile from "../routes/Profile";
 
 const AppRouter = ({ isLoggedIn }) => { 
-
     return (
         <Router>
             {isLoggedIn && <Navigation />}
@@ -22,15 +21,20 @@ const AppRouter = ({ isLoggedIn }) => {
             </Route>
             <Route path="/profile" 
                 element={<Profile />}> 
+
             </Route>
-            <Redirect from="*" to="/" />
+            <Route path="*" element={<Navigate repalce to='/' />}
+            >
+            </Route>
             </>
         ) : (
             <>
             <Route path="/"
                 element={<Auth />}>
             </Route>
-            <Redirect from="*" to="/" />
+            <Route path="*" element={<Navigate repalce to='/' /> }
+            >
+            </Route>
             </>
         )}
         </Routes>
