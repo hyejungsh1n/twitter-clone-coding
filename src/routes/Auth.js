@@ -44,7 +44,7 @@ const Auth = () => {
 const toggleAccount = () => setNewAccount((prev) => !prev); 
 
 // 소셜로그인 관련
-const onSocialClick = (event) => {
+const onSocialClick = async(event) => {
     // ES6
     let provider;
     const {target: {name},
@@ -55,6 +55,8 @@ const onSocialClick = (event) => {
     } else if(name === "github") {
         provider = new firebaseInstance.auth.GithubAuthProvider()
     }
+    const data = await authService.signInWithPopup(provider);
+    console.log(data)
 };
     return ( 
         <div >
