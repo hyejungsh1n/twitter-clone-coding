@@ -20,7 +20,7 @@ function App() {
   return (
     <>
   <AppRouter isLoggedIn={isLoggedIn} />
-    <footer>&copy;  {new Date().getFullYear()} Twitter </footer>
+    <footer>&copy;  {new Date().getFullYear()} Fake Twitter </footer>
   </>
   );
 }
