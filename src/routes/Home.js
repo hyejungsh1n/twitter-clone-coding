@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import {dbService } from "fbase";
+import { addDoc, collection } from "firebase/firestore";
+
 
 const Home = () => {
         const [tweet, setTweet] = useState(""); 
-    const onSubmit = (event) => {
-        event.preventDefault();
-        dbService.collection("tweets").add({
-            tweet,
-            createdAt: Date.now(),
-        });
-        setTweet("")
+    const onSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const docRef = await addDoc(collection(dbService, "tweets"),
+            {tweet, createdAt: Date.now(),
+            });
+            console.log("Document written with ID :", docRef.id); } catch(error) {
+                console.log("Error adding document: ", error)
+            }
+            setTweet("")
     };
     const onChange = (event) => {
         const { 
@@ -19,7 +25,7 @@ const Home = () => {
     }
 return (
 <div>
-    <form>
+    <form onSubmit={onSubmit}>
         <input value={tweet} onChange={onChange}  placeholder="What's on your mind" maxLength={120} />
         <input type="submit" value="Tweet" />
     </form>
