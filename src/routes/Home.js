@@ -14,7 +14,7 @@ const Home = () => {
 return (
 <div>
     <form>
-        <input type={tweet} onChange={onChange}  placeholder="What's on your mind" maxLength={120} />
+        <input value={tweet} onChange={onChange}  placeholder="What's on your mind" maxLength={120} />
         <input type="submit" value="Tweet" />
     </form>
 </div>
