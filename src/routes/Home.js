@@ -50,6 +50,12 @@ return (
         <input value={tweet} onChange={onChange}  placeholder="What's on your mind" maxLength={120} />
         <input type="submit" value="Tweet" />
     </form>
+    <div key={tweet.id}>
+        {tweets.map(tweet => <div>
+            <h4>{tweet.tweet}</h4>
+        </div>
+            )}
+    </div>
 </div>
     );
 };
