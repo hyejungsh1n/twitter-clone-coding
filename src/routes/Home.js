@@ -3,7 +3,8 @@ import {dbService } from "fbase";
 import { addDoc, collection } from "firebase/firestore";
 
 
-const Home = () => {
+const Home = ({ userObj }) => {
+        console.log(userObj)
         const [tweet, setTweet] = useState(""); 
         // 트윗들 가져오기
         const [tweets, setTweets] = useState([]);
@@ -14,6 +15,7 @@ const Home = () => {
                 const tweetObject = {
                     ...document.data(), // spread data
                     id : document.id,
+                    creatorId : 1212
                 }
                 setTweets(prev => [tweetObject, ...prev]); 
                 // 값대신에 함수를 전달하면 리액트는 이전값에 접근할 수 있다.
