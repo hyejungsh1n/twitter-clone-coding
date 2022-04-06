@@ -5,6 +5,7 @@ import { authService } from "fbase";
 function App() {
   const [init, setInit] = useState(false); // 초기화
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  const [userObj, setUserObj] = useState(null);
 
   // 복습
   useEffect(() => {
@@ -12,6 +13,7 @@ function App() {
     authService.onAuthStateChanged((user) => {
     if(user) {
       setIsLoggedIn(true)
+      setUserObj(user);
       } else {
         setIsLoggedIn(false);
       }
@@ -20,7 +22,7 @@ function App() {
   }, [])
   return (
     <>
-  <AppRouter isLoggedIn={isLoggedIn} />
+  <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} />
     <footer>&copy;  {new Date().getFullYear()} Fake Twitter </footer>
   </>
   );

@@ -30,7 +30,7 @@ const Home = () => {
 
         try {
             const docRef = await addDoc(collection(dbService, "tweets"),
-            {tweet, createdAt: Date.now(),
+            {text: tweet, createdAt: Date.now(),
             });
             console.log("Document written with ID :", docRef.id); } catch(error) {
                 console.log("Error adding document: ", error)
