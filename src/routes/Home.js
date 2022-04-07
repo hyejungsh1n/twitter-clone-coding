@@ -49,7 +49,7 @@ const Home = ({ userObj }) => {
 return (
 <div>
     <form onSubmit={onSubmit}>
-        <input value={tweet} onChange={onChange}  placeholder="What's on your mind" maxLength={120} />
+        <input value={tweet} onChange={onChange}  placeholder="What's on your mind?" maxLength={120} />
         <input type="submit" value="Tweet" />
     </form>
     <div key={tweet.id}>
