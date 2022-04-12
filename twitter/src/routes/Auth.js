@@ -9,7 +9,7 @@ const Auth = () => {
     const [error, setError] = useState("")
     const onChange = (event) => {
         const { 
-            target : { name, value}, // 변경이 일어난 부분
+            target : { name, value}, 
         } = event;
         if(name === 'email') {
             setEmail(value);
