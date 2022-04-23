@@ -26,6 +26,9 @@ const Home = () => {
         };
         useEffect(() => {
             getTweets()
+            dbService.collection("tweets").onSnapshot(snapshot => {
+                console.log("something happen")
+            })
         }, [])
     const onSubmit = async (e) => {
         e.preventDefault();
