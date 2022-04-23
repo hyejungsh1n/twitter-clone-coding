@@ -57,7 +57,7 @@ return (
     </form>
     <div key={tweet.id}>
         {tweets.map(tweet => <div>
-            <h4>{tweet.tweet}</h4>
+            <h4>{tweet.text}</h4>
         </div>
             )}
     </div>
