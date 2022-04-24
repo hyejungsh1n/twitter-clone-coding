@@ -8,22 +8,6 @@ const Home = () => {
         console.log(userObj)
         // 트윗들 가져오기
         const [tweets, setTweets] = useState([]);
-        const getTweets = async()=> {
-            const dbTweets = await dbService.collection("tweets").get() // 컬렉션 가져옴.
-        
-            dbTweets.forEach((document) => {
-                const tweetObject = {
-                    ...document.data(), // spread data
-                    id : document.id,
-                    creatorId: userObj.uid,
-                }
-                setTweets(prev => [tweetObject, ...prev]); 
-                // 값대신에 함수를 전달하면 리액트는 이전값에 접근할 수 있다.
-                // 리턴하는 것은 배열 
-                // 이 배열에서 첫번째 요소는 가장 최근 document. 그 뒤로는 이전 도큐먼트.
-            
-            });
-        };
         useEffect(() => {
             getTweets()
             dbService.collection("tweets").onSnapshot(snapshot => {
